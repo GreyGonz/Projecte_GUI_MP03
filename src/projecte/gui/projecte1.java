@@ -113,6 +113,28 @@ public class projecte1 {
     System.exit(0);
   }
 
+  public static void reordena() {
+      
+      for (int i = 0; i < array.length-1; i++) {
+          if (!array[i].isOmplit()) {
+              int j;
+              for (j = i; j < array.length && !array[j].isOmplit(); j++);
+              if (j<20) {
+                array[i].setNom(array[j].getNom());
+                array[i].setAparicio(array[j].getAparicio());
+                array[i].setZona(array[j].getZona());
+                array[i].setAtac(array[j].getAtac());
+                array[i].setTamany(array[j].getTamany());
+                array[i].setAnimes(array[j].getAnimes());
+                array[i].setDesc(array[j].getDesc());
+                array[i].setOmplit(true);
+                array[j].setOmplit(false);
+              }
+          }
+      }
+      
+  }
+    
   private static void printMenu() {
     Scanner e = new Scanner(System.in);
 

@@ -17,6 +17,8 @@ import javax.swing.JOptionPane;
 import projecte.gui.projecte1;
 import projecte.gui.Boss;
 
+import java.util.List;
+
 /**
  *
  * @author alumne
@@ -105,6 +107,11 @@ public class GUI extends javax.swing.JFrame {
         jLabel7.setText("Descripció:");
 
         bAfegir.setText("Afegir");
+        bAfegir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAfegirActionPerformed(evt);
+            }
+        });
 
         bMod.setText("Modificar");
         bMod.addActionListener(new java.awt.event.ActionListener() {
@@ -114,6 +121,11 @@ public class GUI extends javax.swing.JFrame {
         });
 
         bDel.setText("Eliminar");
+        bDel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bDelActionPerformed(evt);
+            }
+        });
 
         bExit.setText("Sortir");
         bExit.addActionListener(new java.awt.event.ActionListener() {
@@ -329,12 +341,71 @@ public class GUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_taulaMouseClicked
 
-    private boolean dadesCorrectes() {
+    /**
+     *
+     * @param oldSel
+     */
+    public void rowSel(int oldSel) {
+        
+        Boss[] array = projecte1.getArray();
+        
+        int i;
+        for (i = 0; i < array.length && array[i].isOmplit(); i++)
+  
+        taula.changeSelection((oldSel==i?oldSel-1:oldSel), 0, false, false);
+    }
+    
+    /**
+     * Revisa que el text entrat sigui un double
+     * @param cas String a comprovar
+     * @return
+     */
+    public static boolean isDouble(String cas) {
+        try {
+            Double.parseDouble(cas);
+            return true;
+        } catch (NumberFormatException ex) {
+            return false;
+        }
+    }
+    
+    /**
+     * Revisa que el text entrat sigui un Integer
+     * @param cas String a comprovar
+     * @return
+     */
+    public static boolean isInt(String cas) {
         
         try {
-            if(casellaNom.getText().trim().equals("")) throw new StringIndexOutOfBoundsException();
-        } catch (StringIndexOutOfBoundsException ex) {
+            Integer.parseInt(cas);
+            return true;
+        } catch (NumberFormatException ex) {
+            return false;
+        }
+        
+    }
+    
+    private boolean dadesCorrectes() {
+        
+        List atacs = Arrays.asList("a","m","c");
+        
+        try {
+            if(casellaNom.getText().length()<1 ||
+               casellaJoc.getText().length()<1 ||
+               casellaZona.getText().length()<1 ||
+               casellaAtac.getText().length()<1 ||
+               casellaTamany.getText().length()<1 ||
+               casellaAnimes.getText().length()<1 ||
+               casellaDesc.getText().length()<1 ||
+               Integer.valueOf(casellaJoc.getText())<1 ||
+               Integer.valueOf(casellaJoc.getText())>3 ||
+               !(atacs.contains(String.valueOf(casellaAtac.getText().charAt(0)))) ||
+               !isDouble(casellaTamany.getText()) ||
+               !isInt(casellaAnimes.getText())) throw new StringIndexOutOfBoundsException();
             
+        } catch (StringIndexOutOfBoundsException ex) {
+            System.out.print(casellaAtac.getText().charAt(0));
+            return false;
         }
         
         return true;
@@ -349,16 +420,16 @@ public class GUI extends javax.swing.JFrame {
             return;
         }
                 
-        int iArray = (int)taula.getValueAt(filaSel, 0);
+        int sel = (int)taula.getValueAt(filaSel, 0);
         Boss[] array = projecte1.getArray();
         
-        array[iArray].setNom(casellaNom.getText().trim());
-        array[iArray].setAparicio(Integer.valueOf(casellaJoc.getText()));
-        array[iArray].setZona(casellaZona.getText().trim());
-        array[iArray].setAtac(casellaAtac.getText().charAt(0));
-        array[iArray].setTamany(Double.valueOf(casellaTamany.getText()));
-        array[iArray].setAnimes(Integer.valueOf(casellaAnimes.getText()));
-        array[iArray].setDesc(casellaDesc.getText().trim());
+        array[sel].setNom(casellaNom.getText().trim());
+        array[sel].setAparicio(Integer.valueOf(casellaJoc.getText()));
+        array[sel].setZona(casellaZona.getText().trim());
+        array[sel].setAtac(casellaAtac.getText().charAt(0));
+        array[sel].setTamany(Double.valueOf(casellaTamany.getText()));
+        array[sel].setAnimes(Integer.valueOf(casellaAnimes.getText()));
+        array[sel].setDesc(casellaDesc.getText().trim());
         
         carregaTaula(new String[]{"Fila","Nom","Joc","Zona","Atac","Tamany","Animes","Descripcio"}, transformaDades(projecte1.getArray()), taula);
     }//GEN-LAST:event_bModActionPerformed
@@ -374,6 +445,52 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
          projecte1.sortirPrograma();   
     }//GEN-LAST:event_formWindowClosing
+
+    private void bAfegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAfegirActionPerformed
+        // TODO add your handling code here:
+        
+        if(!dadesCorrectes()) {
+            JOptionPane.showMessageDialog(this, "Dades incorrectes, per favor revisales");
+            return;
+        }
+        
+        Boss[] array = projecte1.getArray();
+        int sel;
+        for (sel = 0; sel < array.length && array[sel].isOmplit(); sel++);
+        
+        array[sel].setNom(casellaNom.getText().trim()); 
+        array[sel].setAparicio(Integer.valueOf(casellaJoc.getText().trim()));
+        array[sel].setZona(casellaZona.getText().trim());
+        array[sel].setAtac(casellaAtac.getText().trim().charAt(0));
+        array[sel].setTamany(Double.valueOf(casellaTamany.getText().trim()));
+        array[sel].setAnimes(Integer.valueOf(casellaAnimes.getText().trim()));
+        array[sel].setDesc(casellaDesc.getText().trim());
+        array[sel].setOmplit(true);
+        
+        carregaTaula(new String[]{"Fila","Nom","Joc","Zona","Atac","Tamany","Animes","Descripcio"}, transformaDades(projecte1.getArray()), taula);
+
+        rowSel(sel);
+        
+//        taula.changeSelection(sel, 0, false, false);
+        
+    }//GEN-LAST:event_bAfegirActionPerformed
+
+    private void bDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDelActionPerformed
+        // TODO add your handling code here:
+        
+        Boss[] array = projecte1.getArray();
+        int sel = (int)taula.getValueAt(filaSel, 0);
+        
+        array[sel].setOmplit(false);
+        
+        projecte1.reordena();
+        carregaTaula(new String[]{"Fila","Nom","Joc","Zona","Atac","Tamany","Animes","Descripcio"}, transformaDades(projecte1.getArray()), taula);
+        
+        rowSel(sel);
+        
+//        taula.changeSelection(sel, 0, false, false);
+        
+    }//GEN-LAST:event_bDelActionPerformed
 
     /**
      * @param args the command line arguments

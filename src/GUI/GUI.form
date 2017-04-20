@@ -221,6 +221,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Afegir"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bAfegirActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bMod">
       <Properties>
@@ -234,6 +237,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Eliminar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bDelActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bExit">
       <Properties>
