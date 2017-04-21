@@ -26,17 +26,18 @@ public class projecte1 {
 
     private static char[] atacs = {'m','a','c','h'};
 
-  
+    // Retorna el valor de l'array (Utilitzat per el GUI)
     public static Boss[] getArray() {
         return array;
     }
   
+    //Retorna el valor màxim de caselles (Utilitzat per el GUI)
     public static int getMaxBoss(){
       return MAX_BOSSES;
     }
     
     /**
-     *
+     * 
      * @param args
      */
     public static void main(String[] args) {
@@ -50,7 +51,7 @@ public class projecte1 {
     }
 
     /**
-     *
+     * Carrega el fitxer de guardat dins l'array
      */
     public static void inicialitzar() {
         
@@ -77,20 +78,18 @@ public class projecte1 {
 
           } catch (ClassNotFoundException | IOException ex) {
             System.err.println("ERROR EN LLEGIR EL FITXER");
-    //        ex.printStackTrace();
           } finally {
             try {
               if (dades != null) dades.close();
             } catch (IOException ex) {
               System.out.println("ERROR EN TANCAR EL FITXER");
-    //          ex.printStackTrace();
             }
           }
         }
     }
 
     /**
-     *
+     * Carrega l'array al fitxer de guardat i surt del programa
      */
     public static void sortirPrograma() {
         
@@ -106,19 +105,18 @@ public class projecte1 {
 
         } catch (IOException ex) {
           System.err.println("ERROR EN ESCRIURE EL FITXER");
-    //      ex.printStackTrace();
         } finally {
           try {
             if (dades != null) dades.close();
           } catch (IOException ex) {
             System.err.println("ERROR EN TANCAR EL FITXER");
-    //        ex.printStackTrace();
           }
         }
 
         System.exit(0);
     }
 
+    // Reordena l'array per a deixar les caselles buides excloses (Utilitzat per el GUI)
     public static void reordena() {
 
         for (int i = 0; i < array.length-1; i++) {
@@ -141,6 +139,7 @@ public class projecte1 {
 
     }
     
+    //
     private static void printMenu() {
       Scanner e = new Scanner(System.in);
 
