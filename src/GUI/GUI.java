@@ -461,19 +461,24 @@ public class GUI extends javax.swing.JFrame {
         int sel;
         for (sel = 0; sel < array.length && array[sel].isOmplit(); sel++);
         
-        array[sel].setNom(casellaNom.getText().trim()); 
-        array[sel].setAparicio(Integer.valueOf(casellaJoc.getText().trim()));
-        array[sel].setZona(casellaZona.getText().trim());
-        array[sel].setAtac(casellaAtac.getText().trim().charAt(0));
-        array[sel].setTamany(Double.valueOf(casellaTamany.getText().trim()));
-        array[sel].setAnimes(Integer.valueOf(casellaAnimes.getText().trim()));
-        array[sel].setDesc(casellaDesc.getText().trim());
-        array[sel].setOmplit(true);
-        
-        carregaTaula(new String[]{"Fila","Nom","Joc","Zona","Atac","Tamany","Animes","Descripcio"}, transformaDades(projecte1.getArray()), taula);
+        try {
+            array[sel].setNom(casellaNom.getText().trim()); 
+            array[sel].setAparicio(Integer.valueOf(casellaJoc.getText().trim()));
+            array[sel].setZona(casellaZona.getText().trim());
+            array[sel].setAtac(casellaAtac.getText().trim().charAt(0));
+            array[sel].setTamany(Double.valueOf(casellaTamany.getText().trim()));
+            array[sel].setAnimes(Integer.valueOf(casellaAnimes.getText().trim()));
+            array[sel].setDesc(casellaDesc.getText().trim());
+            array[sel].setOmplit(true);
+            
+            carregaTaula(new String[]{"Fila","Nom","Joc","Zona","Atac","Tamany","Animes","Descripcio"}, transformaDades(projecte1.getArray()), taula);
 
-        rowSel(sel);
-        
+            rowSel(sel);
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            JOptionPane.showMessageDialog(null, "Totes les caselles disponibles estan plenes (" + projecte1.getMaxBoss() + "/" + projecte1.getMaxBoss() +").\nElimina un valor per insertar un de nou", "Error d'inserció", JOptionPane.WARNING_MESSAGE);
+
+        }
+           
     }//GEN-LAST:event_bAfegirActionPerformed
 
     private void bDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDelActionPerformed
