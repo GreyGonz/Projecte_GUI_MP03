@@ -6,12 +6,18 @@
 package GUI;
 
 // Per al metode carregaTaula()
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.util.Arrays;
 import java.util.Vector;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-
+import javax.swing.ImageIcon;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JOptionPane;
 import projecte.gui.projecte1;
@@ -20,6 +26,9 @@ import projecte.gui.Boss;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.JLabel;
+
 
 /**
  *
@@ -67,9 +76,10 @@ public class GUI extends javax.swing.JFrame {
         bMod = new javax.swing.JButton();
         bDel = new javax.swing.JButton();
         bExit = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(600, 500));
+        setMinimumSize(new java.awt.Dimension(700, 500));
         setPreferredSize(new java.awt.Dimension(700, 400));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -77,6 +87,7 @@ public class GUI extends javax.swing.JFrame {
                 formWindowClosing(evt);
             }
         });
+        getContentPane().setLayout(null);
 
         taula.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -97,19 +108,68 @@ public class GUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(taula);
 
-        jLabel1.setText("Nom:");
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(6, 16, 462, 269);
+        getContentPane().add(casellaNom);
+        casellaNom.setBounds(556, 130, 130, 23);
+        getContentPane().add(casellaJoc);
+        casellaJoc.setBounds(556, 160, 130, 23);
+        getContentPane().add(casellaZona);
+        casellaZona.setBounds(556, 190, 130, 23);
 
-        jLabel2.setText("Joc:");
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel1.setText("<html><font color=\"white\">Nom:</font></html>");
+        jLabel1.setToolTipText("");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jLabel1.setPreferredSize(new java.awt.Dimension(78, 15));
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(472, 134, 78, 15);
 
-        jLabel3.setText("Zona:");
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setText("<html><font color=\"white\">Joc:</font></html>");
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jLabel2.setPreferredSize(new java.awt.Dimension(78, 15));
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(472, 164, 78, 15);
 
-        jLabel4.setText("Tipus atac:");
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setText("<html><font color=\"white\">Zona:</font></html>");
+        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jLabel3.setPreferredSize(new java.awt.Dimension(78, 15));
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(472, 194, 78, 15);
+        getContentPane().add(casellaAtac);
+        casellaAtac.setBounds(556, 220, 130, 23);
+        getContentPane().add(casellaTamany);
+        casellaTamany.setBounds(556, 250, 130, 23);
+        getContentPane().add(casellaAnimes);
+        casellaAnimes.setBounds(556, 280, 130, 23);
+        getContentPane().add(casellaDesc);
+        casellaDesc.setBounds(6, 312, 680, 100);
 
-        jLabel5.setText("Tamany:");
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel4.setText("<html><font color=\"white\">Tipus atac:</font></html>");
+        jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(472, 225, 78, 15);
 
-        jLabel6.setText("Animes:");
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel5.setText("<html><font color=\"white\">Tamany:</font></html>");
+        jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jLabel5.setPreferredSize(new java.awt.Dimension(78, 15));
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(472, 254, 78, 15);
 
-        jLabel7.setText("Descripció:");
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel6.setText("<html><font color=\"white\">Animes:</font></html>");
+        jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        jLabel6.setPreferredSize(new java.awt.Dimension(78, 15));
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(472, 285, 78, 15);
+
+        jLabel7.setText("<html><font color=\"white\">Descripció:</font></html>");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(6, 291, 78, 15);
 
         bAfegir.setText("Afegir");
         bAfegir.addActionListener(new java.awt.event.ActionListener() {
@@ -117,6 +177,8 @@ public class GUI extends javax.swing.JFrame {
                 bAfegirActionPerformed(evt);
             }
         });
+        getContentPane().add(bAfegir);
+        bAfegir.setBounds(10, 430, 72, 31);
 
         bMod.setText("Modificar");
         bMod.addActionListener(new java.awt.event.ActionListener() {
@@ -124,6 +186,8 @@ public class GUI extends javax.swing.JFrame {
                 bModActionPerformed(evt);
             }
         });
+        getContentPane().add(bMod);
+        bMod.setBounds(130, 430, 95, 31);
 
         bDel.setText("Eliminar");
         bDel.addActionListener(new java.awt.event.ActionListener() {
@@ -131,108 +195,36 @@ public class GUI extends javax.swing.JFrame {
                 bDelActionPerformed(evt);
             }
         });
+        getContentPane().add(bDel);
+        bDel.setBounds(290, 430, 86, 31);
 
         bExit.setText("Sortir");
+        bExit.setMargin(new java.awt.Insets(0, 0, 0, 0));
         bExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bExitActionPerformed(evt);
             }
         });
+        getContentPane().add(bExit);
+        bExit.setBounds(620, 430, 70, 31);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(casellaAtac, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(casellaZona, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(casellaJoc, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(casellaNom, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(casellaTamany, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(casellaAnimes, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(12, 12, 12))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(casellaDesc, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(bAfegir)
-                                .addGap(52, 52, 52)
-                                .addComponent(bMod)
-                                .addGap(62, 62, 62)
-                                .addComponent(bDel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(bExit)))
-                        .addGap(14, 14, 14))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(casellaNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(casellaJoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(casellaZona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(casellaAtac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(casellaTamany, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addGap(14, 14, 14)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(casellaAnimes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addGap(0, 69, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(casellaDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bAfegir)
-                    .addComponent(bMod)
-                    .addComponent(bDel)
-                    .addComponent(bExit))
-                .addGap(18, 18, 18))
-        );
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/src/nito.jpg"))); // NOI18N
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(0, 0, 700, 490);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void inicialitzarComponents() {
+        
+        //Insereix un títol i un icono a la finestra
+        this.setTitle("DS3 Bosses 1.0");
+        this.setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("src/artorias.png")));
+        
         bDel.setEnabled(false);
         bMod.setEnabled(false);
         
+        // Carrega el fitxer guardat a l'array del projecte
         projecte1.inicialitzar();
         
         carregaTaula(new String[]{"Fila","Nom","Joc","Zona","Atac","Tamany","Animes","Descripcio"}, transformaDades(projecte1.getArray()), taula);
@@ -287,7 +279,6 @@ public class GUI extends javax.swing.JFrame {
         }
     }
 
-    
     private static Object[][] transformaDades(Boss[] dades) {
         
           Object[][] result = new Object[dades.length][8];
@@ -347,7 +338,8 @@ public class GUI extends javax.swing.JFrame {
 
     /**
      * Al afegir o eliminar un nou element, la línia de selecció es mou,
-     * per a poder eliminar i afegir d'una manera més senzilla.
+     * d'aquesta manera es poden eliminar línies de forma consecutiva i que
+     * quan s'en creïn de noves, l'última quedi automàticament seleccionada.
      * @param sel Línia seleccionada
      */
     public void rowSel(int sel) {
@@ -393,18 +385,21 @@ public class GUI extends javax.swing.JFrame {
         
     }
     
-    
-    
+    //Revisa que totes les dades, ja siguin inserides o modificades, siguin correctes
     private boolean dadesCorrectes() {
         
+        //Crea una llista que s'utilitzarà per comprovar el valor de la "casellaAtac"
         List atacs = Arrays.asList("a","m","c");
         
         try {
-            
+            //Cada condició llança una excepció personalitzada que es llegida per la funció "Exepcio",
+            //que es troba dins el fitxer "Excepcio.java", i aquest llança el missatge d'error 
+            //que tracta l'error de forma específica
             if (casellaNom.getText().trim().length()<1) throw new Excepcio(0,"Nom");
             if (casellaJoc.getText().trim().length()<1) throw new Excepcio(0,"Joc");
             if (casellaZona.getText().trim().length()<1) throw new Excepcio(0,"Zona");
             if (casellaAtac.getText().trim().length()<1) throw new Excepcio(0,"Atac");
+            if (casellaAtac.getText().trim().length()>1) throw new Excepcio(2,"");
             if (casellaTamany.getText().trim().length()<1) throw new Excepcio(0,"Tamany");
             if (casellaAnimes.getText().trim().length()<1) throw new Excepcio(0,"Animes");
             if (casellaDesc.getText().trim().length()<1) throw new Excepcio(0,"Desc");
@@ -423,7 +418,7 @@ public class GUI extends javax.swing.JFrame {
     private void bModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bModActionPerformed
         // TODO add your handling code here:
         
-        //
+        //Si les dades no són correctes surt de la funció i no fa la modificació
         if(!dadesCorrectes()) return;
                 
         int sel = (int)taula.getValueAt(filaSel, 0);
@@ -440,26 +435,32 @@ public class GUI extends javax.swing.JFrame {
         carregaTaula(new String[]{"Fila","Nom","Joc","Zona","Atac","Tamany","Animes","Descripcio"}, transformaDades(projecte1.getArray()), taula);
     }//GEN-LAST:event_bModActionPerformed
 
+    //Tanca el programa amb el botò "Sortir" del programa
     private void bExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bExitActionPerformed
         // TODO add your handling code here:
         
+        //Carrega les dades de l'array al fitxer de guardat i tanca el programa
         projecte1.sortirPrograma();
         System.exit(1);
     }//GEN-LAST:event_bExitActionPerformed
 
+    // Tanca el programa amb la creueta de la finestra
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
+        
+        //Carrega les dades de l'array al fitxer de guardat i tanca el programa
          projecte1.sortirPrograma();   
     }//GEN-LAST:event_formWindowClosing
 
     private void bAfegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAfegirActionPerformed
         // TODO add your handling code here:
         
+        //Si les dades no són correctes surt de la funció i no afegeix el nou valor
         if(!dadesCorrectes()) return;
         
         Boss[] array = projecte1.getArray();
         int sel;
-        for (sel = 0; sel < array.length && array[sel].isOmplit(); sel++);
+        for (sel = 0; sel < array.length && array[sel].isOmplit(); sel++); //busca la primera casella buida
         
         try {
             array[sel].setNom(casellaNom.getText().trim()); 
@@ -474,6 +475,7 @@ public class GUI extends javax.swing.JFrame {
             carregaTaula(new String[]{"Fila","Nom","Joc","Zona","Atac","Tamany","Animes","Descripcio"}, transformaDades(projecte1.getArray()), taula);
 
             rowSel(sel);
+            
         } catch (ArrayIndexOutOfBoundsException ex) {
             JOptionPane.showMessageDialog(null, "Totes les caselles disponibles estan plenes (" + projecte1.getMaxBoss() + "/" + projecte1.getMaxBoss() +").\nElimina un valor per insertar un de nou", "Error d'inserció", JOptionPane.WARNING_MESSAGE);
 
@@ -487,8 +489,10 @@ public class GUI extends javax.swing.JFrame {
         Boss[] array = projecte1.getArray();
         int sel = (int)taula.getValueAt(filaSel, 0);
         
+        // Marca la línia seleccionada com a buida
         array[sel].setOmplit(false);
         
+        // Reordena l'array del projecte i el recarrega actualitzat a la taula
         projecte1.reordena();
         carregaTaula(new String[]{"Fila","Nom","Joc","Zona","Atac","Tamany","Animes","Descripcio"}, transformaDades(projecte1.getArray()), taula);
         
@@ -496,6 +500,7 @@ public class GUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_bDelActionPerformed
 
+     
     /**
      * @param args the command line arguments
      */
@@ -550,6 +555,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable taula;
     // End of variables declaration//GEN-END:variables
