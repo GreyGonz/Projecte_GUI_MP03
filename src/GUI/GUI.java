@@ -67,7 +67,6 @@ public class GUI extends javax.swing.JFrame {
         casellaAtac = new javax.swing.JTextField();
         casellaTamany = new javax.swing.JTextField();
         casellaAnimes = new javax.swing.JTextField();
-        casellaDesc = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -75,6 +74,8 @@ public class GUI extends javax.swing.JFrame {
         bAfegir = new javax.swing.JButton();
         bMod = new javax.swing.JButton();
         bDel = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        casellaDesc = new javax.swing.JEditorPane();
         bExit = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
 
@@ -111,11 +112,13 @@ public class GUI extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(6, 16, 462, 269);
         getContentPane().add(casellaNom);
-        casellaNom.setBounds(556, 130, 130, 23);
+        casellaNom.setBounds(556, 130, 130, 25);
         getContentPane().add(casellaJoc);
-        casellaJoc.setBounds(556, 160, 130, 23);
+        casellaJoc.setBounds(556, 160, 130, 25);
+        casellaJoc.getAccessibleContext().setAccessibleName("");
+
         getContentPane().add(casellaZona);
-        casellaZona.setBounds(556, 190, 130, 23);
+        casellaZona.setBounds(556, 190, 130, 25);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("<html><font color=\"white\">Nom:</font></html>");
@@ -139,13 +142,11 @@ public class GUI extends javax.swing.JFrame {
         getContentPane().add(jLabel3);
         jLabel3.setBounds(472, 194, 78, 15);
         getContentPane().add(casellaAtac);
-        casellaAtac.setBounds(556, 220, 130, 23);
+        casellaAtac.setBounds(556, 220, 130, 25);
         getContentPane().add(casellaTamany);
-        casellaTamany.setBounds(556, 250, 130, 23);
+        casellaTamany.setBounds(556, 250, 130, 25);
         getContentPane().add(casellaAnimes);
-        casellaAnimes.setBounds(556, 280, 130, 23);
-        getContentPane().add(casellaDesc);
-        casellaDesc.setBounds(6, 312, 680, 100);
+        casellaAnimes.setBounds(556, 280, 130, 25);
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("<html><font color=\"white\">Tipus atac:</font></html>");
@@ -197,6 +198,13 @@ public class GUI extends javax.swing.JFrame {
         });
         getContentPane().add(bDel);
         bDel.setBounds(290, 430, 86, 31);
+
+        casellaDesc.setBackground(new java.awt.Color(69, 73, 74));
+        casellaDesc.setPreferredSize(new java.awt.Dimension(120, 21));
+        jScrollPane2.setViewportView(casellaDesc);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(6, 310, 679, 110);
 
         bExit.setText("Sortir");
         bExit.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -543,7 +551,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton bMod;
     private javax.swing.JTextField casellaAnimes;
     private javax.swing.JTextField casellaAtac;
-    private javax.swing.JTextField casellaDesc;
+    private javax.swing.JEditorPane casellaDesc;
     private javax.swing.JTextField casellaJoc;
     private javax.swing.JTextField casellaNom;
     private javax.swing.JTextField casellaTamany;
@@ -557,6 +565,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable taula;
     // End of variables declaration//GEN-END:variables
 }
